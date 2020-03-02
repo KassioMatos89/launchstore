@@ -1,13 +1,13 @@
 const express = require('express')
 const routes = express.Router()
-const ProductsController = require('./app/controllers/ProductsController')
+const ProductController = require('./app/controllers/ProductController')
 
 routes.get("/", function(req, res){
     return res.render('layout')
 })
 
-routes.get('/products/create', ProductsController.create)
-
+routes.get('/products/create', ProductController.create)
+routes.post('/products', ProductController.post)
 
 // Alias
 routes.get('/ads/create', function ( req, res ) {
