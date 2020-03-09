@@ -20,13 +20,13 @@
 
             </div>
 
-            <button class="button" type="submit">Atualizar</button>
+            <button class="button edit" type="submit">Atualizar</button>
         
         </form>
 
         <form id="form-delete" method="post" action="/products?_method=DELETE">
             <input type="hidden" name="id" value="{{ products.id }}">
-            <button class="button" type="submit">Deletar</button>                            
+            <button class="button delete" type="submit">Deletar</button>                            
         </form>
 
         <script>
