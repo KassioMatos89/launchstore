@@ -57,7 +57,7 @@
     </div>
 </div>
 
-{% if product.status %}
+{% if (product.status == '0') or (product.status == '1') %}
 <div class="item">
     <div>Disponivel ?</div>
         <span>
