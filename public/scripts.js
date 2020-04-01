@@ -107,7 +107,7 @@ const PhotosUpload = {
     },
 
     // Função que cria a div para a imagem e a insere de acordo com a imagem passada no argumento.
-    getContainer(image){
+    getContainer(image) {
         const div = document.createElement('div')
         div.classList.add('photo')
 
@@ -145,5 +145,52 @@ const PhotosUpload = {
 
         // Por ultimo removemos a div com remove
         photoDiv.remove()
+    },
+    removeOldPhoto(event) {
+        const photoDiv = event.target.parentNode
+
+        if (photoDiv) {
+            const removedFiles = document.querySelector('input[name="removed_files"]')
+
+            if (removedFiles) {
+                removedFiles.value += `${photoDiv.id},`
+            }
+        }
+
+        photoDiv.remove()
+    }
+}
+
+// Este objeto contém a função que troca a imagem inicial do produto pela imagem que foi clicada.
+const ImageGallery = {
+    highlight: document.querySelector('.gallery .highlight img'),
+    previews: document.querySelectorAll('.gallery-preview img'),
+    setImage(e) {        
+        const { target } = e
+
+        ImageGallery.previews.forEach(preview => preview.classList.remove('active'))
+        target.classList.add('active')
+
+        ImageGallery.highlight.src = target.src
+        Lightbox.image.src = target.src
+    }
+}
+
+//
+const Lightbox = {
+    target: document.querySelector('.lightbox-target'),
+    image: document.querySelector('.lightbox-target img'),
+    closeButton: document.querySelector('.lightbox-target a.lightbox-close'),
+    open() {
+        Lightbox.target.style.opacity = 1
+        Lightbox.target.style.top = 0
+        Lightbox.target.style.bottom = 0
+        Lightbox.closeButton.style.top = 0
+    },
+    close() {
+        Lightbox.target.style.opacity = 0
+        Lightbox.target.style.top = "-100%"
+        Lightbox.target.style.bottom = "initial"
+        Lightbox.closeButton.style.top = "-80px"
     }
 }
